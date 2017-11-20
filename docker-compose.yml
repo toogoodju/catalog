@@ -1,0 +1,31 @@
+app:
+  restart: always
+  build: ./app
+  expose:
+    - "8000"
+  links:
+    - postgres:postgres
+  volumes:
+    - ./app:/app
+  env_file: .env
+  command: /usr/local/bin/gunicorn app.wsgi:application -w 2 -b :8000
+
+nginx:
+  restart: always
+  build: ./nginx
+  ports:
+    - "80:80"
+  volumes:
+    - ./app/catalog/static:/usr/share/nginx/html/static
+  links:
+    - app:app
+
+postgres:
+  restart: always
+  image: postgres:latest
+  ports:
+    - "5432:5432"
+  volumes:
+    - /home/sju/django/data:/var/lib/postgresql/data/
+  env_file: .postgres_env
+

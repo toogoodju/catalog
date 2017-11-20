@@ -1,0 +1,46 @@
+
+{% extends 'catalog/base.html' %}
+{% load catalog_extras %}
+{% block title %}Home Portal{% endblock %}
+
+{% block home %}current{% endblock %}
+
+{% block real_content %}
+
+	<div id="accordion">
+        	{% for host in hosts %}
+            	<h3>{{ host.name }}</h3>
+		<div>
+			<p>	
+				<table class="table-fill">
+					<thead>
+						<tr>
+						<th class="text-left">Context</th>
+						<th class="text-left">Pool Name</th>
+						<th class="text-left">Pool Nodes</th>
+						<th class="text-left">App Name</th>
+						<th class="text-left">Version</th>
+						<th class="text-left">Release Date</th>
+						</tr>
+					</thead>
+					
+					<tbody class="table-hover">
+					{% for context in host.sorted_context_set %}
+						<tr>
+							<td class="text-left">{{ context.path }}</td>
+							<td class="text-left">{{ context.pool }}</td>
+							<td class="text-left">{{ context.pool.nodes }} </td>
+							<td class="text-left">{{ context.app.name }} </td>
+							<td class="text-left"><a href="/catalog/versions/{{ context.app.name }}">{% get_latest_version context.app.name %} </a></td>
+							{% get_latest_version_date context.app.name as v %}
+							<td class="text-left">{{ v.created }}</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</p>			
+		</div>
+        	{% endfor %}
+    	</div>
+
+{% endblock %}

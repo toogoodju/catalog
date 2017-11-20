@@ -1,0 +1,98 @@
+{% load static %}
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+	<meta http-equiv="Content-Language" content="en">
+        <title>{% block title %} Default Title {% endblock %} </title>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  	<link rel="stylesheet" href="/resources/demos/style.css">
+  	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'catalog/style.css' %}" />{% block stylesheet %}{% endblock %}
+	<link rel="stylesheet" type="text/css" href="{% static 'catalog/table.css' %}" />{% block tablesheet %}{% endblock %}
+	<script src="{% static 'catalog/main.js' %}"></script>
+    </head>
+
+    <body>
+    {% block content %}
+        <div id="content"></div>
+
+            {% block navigation %}
+                <nav class="col-1">
+                    <ul class="mainmenu">
+                        <li><a class="{% block home %}{% endblock %}" href="/catalog">Home</a></li>
+                        <li><a class="{% block environment %}{% endblock %}" href="/catalog">Environments</a>
+                            <ul class="submenu">
+                                <li><a href="/catalog/environment/dev">Dev</a></li>
+                                <li><a href="/catalog/environment/qa">Qa</a></li>
+                                <li><a href="/catalog/environment/rc">Rc</a></li>
+                                <li><a href="/catalog/environment/stage">Staging</a></li>
+                                <li><a href="/catalog/environment/sandbox">Sandbox</a></li>
+                                <li><a href="/catalog/environment/prod">Prod</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            {% endblock %}
+
+            <div class="col-2">
+                {% block real_content %}
+                <p> Nothing to see here </p>
+                {% endblock %}
+            </div>
+
+        </div>
+
+    {% endblock %}
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+    <!--   
+    <nav class="navigation">
+        <ul class="mainmenu">
+            <li><a href="">Home</a></li>
+            <li><a href="">Environments</a></li>
+                <ul class="submenu">
+                    <li><a href="">Dev</a></li>
+                    <li><a href="">Qa</a></li>
+                    <li><a href="">Rc</a></li>
+                    <li><a href="">Staging</a></li>
+                    <li><a href="">Sandbox</a></li>
+                    <li><a href="">Prod</a></li>
+                </ul>
+            <li>
+        </ul>
+    </nav>
+-->
+
+<!--
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'catalog/style.css' %}" />    
+
+
+    {% for environment in environment_list %}
+        <ul>
+        	<li> <a href="/catalog/{{ environment.name }}/">{{ environment.name }} </li>
+        	{% for host in environment.hostname_set.all %}
+        		<ul>
+        			<li> {{ host.name }} </li> 
+        			{% for context in host.context_set.all %}
+        				<ul>
+        					<li> {{ context.path }} </li>
+        				</ul>
+        			{% endfor %}
+        		</ul>
+        	{% endfor %}
+        </ul>
+    {% endfor %}
+-->

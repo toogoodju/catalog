@@ -1,0 +1,70 @@
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row;
+    margin: 0;
+}
+
+.col-1 {
+  background: #D7E8D4;
+  flex: 1;
+  padding: 5px;
+}
+
+element.style {
+    width: 100px;
+}
+
+
+.col-2 {
+  display: flex;
+  flex-direction: column;
+  flex: 5;
+  padding: 10px;
+}
+
+
+/* reset our lists to remove bullet points and padding */
+.mainmenu, .submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* make ALL links (main and submenu) have padding and background color */
+.mainmenu a {
+  display: block;
+  text-decoration: none;
+  padding: 10px;
+  color: #000;
+}
+
+/* add hover behaviour */
+.mainmenu a:hover {
+    background-color: #C5C5C5;
+}
+
+
+/* when hovering over a .mainmenu item,
+  display the submenu inside it.
+  we're changing the submenu's max-height from 0 to 200px;
+*/
+
+.mainmenu li:hover .submenu {
+  display: block;
+  max-height: 200px;
+}
+
+/*
+  we now overwrite the background-color for .submenu links only.
+  CSS reads down the page, so code at the bottom will overwrite the code at the top.
+*/
+
+.submenu a {
+  padding-left: 26px;
+  font-size: 14px;
+}
+
+

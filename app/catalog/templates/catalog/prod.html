@@ -1,0 +1,40 @@
+
+{% extends 'catalog/base.html' %}
+{% block title %}Home Portal{% endblock %}
+
+{% block home %}current{% endblock %}
+
+{% block real_content %}
+
+	<div id="accordion">
+        	{% for host in hosts %}
+            	<h3>{{ host.name }}</h3>
+		<div>
+			<p>	
+				<table class="table-fill">
+					<thead>
+						<tr>
+						<th class="text-left">Context</th>
+						<th class="text-left">Pool Name</th>
+						<th class="text-left">Pool Nodes</th>
+						<th class="text-left">Version</th>
+						<th class="text-left">Release Data</th>
+						</tr>
+					</thead>
+					
+					<tbody class="table-hover">
+					{% for context in host.sorted_context_set %}
+						<tr>
+							<td class="text-left">{{ context.path }}</td>
+							<td class="text-left">{{ context.pool }}</td>
+							<td class="text0left">{{ context.pool.nodes }} </td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</p>			
+		</div>
+        	{% endfor %}
+    	</div>
+
+{% endblock %}

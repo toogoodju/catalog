@@ -1,0 +1,21 @@
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'catalog/style.css' %}" />    
+
+
+    {% for environment in environment_list %}
+        <ul>
+        	<li> <a href="/catalog/{{ environment.name }}/">{{ environment.name }} </li>
+        	{% for host in environment.hostname_set.all %}
+        		<ul>
+        			<li> {{ host.name }} </li> 
+        			{% for context in host.context_set.all %}
+        				<ul>
+        					<li> {{ context.path }} </li>
+        				</ul>
+        			{% endfor %}
+        		</ul>
+        	{% endfor %}
+        </ul>
+    {% endfor %}
+

@@ -1,0 +1,32 @@
+
+{% extends 'catalog/base.html' %}
+{% block title %}Versions{% endblock %}
+
+{% block home %}current{% endblock %}
+
+{% block real_content %}
+
+        <h3 style="text-align:center">{{ app_name }}</h3>
+		<div>
+			<p>	
+				<table class="table-fill">
+					<thead>
+						<tr>
+						<th class="text-left">Version</th>
+						<th class="text-left">Date</th>
+						</tr>
+					</thead>
+					
+					<tbody class="table-hover">
+					{% for version in versions %}
+						<tr>
+							<td class="text-left">{{ version.version }}</td>
+							<td class="text-left">{{ version.created }}</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</p>			
+		</div>
+
+{% endblock %}
