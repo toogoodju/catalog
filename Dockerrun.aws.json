@@ -1,0 +1,54 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "command": [
+                "/usr/local/bin/gunicorn",
+                "app.wsgi",
+                "-w",
+                "2",
+                "-b",
+                ":8000"
+            ],
+            "essential": true,
+            "image": "307749492709.dkr.ecr.us-east-1.amazonaws.com/catalog_app:1.0.0",
+            "links": [
+                "postgres:postgres"
+            ],
+            "memory": 200
+        },
+        {
+            "essential": true,
+            "image": "307749492709.dkr.ecr.us-east-1.amazonaws.com/catalog_nginx:1.0.0",
+            "links": [
+                "app:app"
+            ],
+            "memory": 50,
+            "mountPoints": [
+                {
+                    "containerPath": "/usr/share/nginx/html/static",
+                    "sourceVolume": "_AppCatalogStatic"
+                }
+            ],
+            "name": "nginx",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80
+                }
+            ]
+        },
+        {
+            "essential": true,
+            "image": "307749492709.dkr.ecr.us-east-1.amazonaws.com/catalog_postgres:1.0.0",
+            "memory": 50,
+            "name": "postgres",
+            "portMappings": [
+                {
+                    "containerPort": 5432,
+                    "hostPort": 5432
+                }
+            ]
+        }
+    ]
+}

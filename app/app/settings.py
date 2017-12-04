@@ -80,11 +80,11 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('db_name', 'catalog'),
-	'USER': os.environ.get('db_user', 'emmi'),
-	'PASSWORD': os.environ.get('db_password', 'temp123'),
-	'HOST': os.environ.get('db_host', 'localhost'),
-	'PORT': os.environ.get('db_port', '5432'),
+        'NAME': os.environ.get('RDS_DB_NAME', 'catalog'),
+	'USER': os.environ.get('RDS_USERNAME', 'emmi'),
+	'PASSWORD': os.environ.get('RDS_PASSWORD', 'temp123'),
+	'HOST': os.environ.get('RDS_HOSTNAME', 'localhost'),
+	'PORT': os.environ.get('RDS_PORT', '5432'),
     }
 }
 

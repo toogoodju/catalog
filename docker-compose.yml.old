@@ -1,7 +1,7 @@
+version: '3'
 
 app:
   image: 307749492709.dkr.ecr.us-east-1.amazonaws.com/catalog_app:1.0.0
-  mem_limit: 200m
   restart: always
   build: ./app
   expose:
@@ -15,7 +15,6 @@ app:
 
 nginx:
   image: 307749492709.dkr.ecr.us-east-1.amazonaws.com/catalog_nginx:1.0.0
-  mem_limit: 50m
   restart: always
   build: ./nginx
   ports:
@@ -27,7 +26,6 @@ nginx:
 
 postgres:
   restart: always
-  mem_limit: 50m
   image: postgres:latest
   ports:
     - "5432:5432"
